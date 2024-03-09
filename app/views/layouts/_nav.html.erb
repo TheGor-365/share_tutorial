@@ -1,37 +1,49 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand me-5" href="/">Share Tutorial</a>
+<div class="collapse text-bg-dark" id="navbarHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-md-7 py-4">
+        <h4>
+          Tutorials Share
+        </h4>
+        <p class="text-body-secondary">Share wit your expirience</p>
+      </div>
+      <div class="col-sm-4 offset-md-1 py-4">
+        <h4>
+          Navigation
+        </h4>
+        <ul class="list-unstyled">
+          <li><a href="<%= root_path %>" class="text-white">Tutorials</a></li>
+          <li><a href="<%=  %>" class="text-white">Join</a></li>
+          <li><a href="<%=  %>" class="text-white">Explore</a></li>
+          <hr>
+          <% if user_signed_in? %>
+            <li><%= link_to 'Account Settings', edit_user_registration_path, class: "ext-white" %></li>
+            <li><%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: "text-danger" %></li>
+          <% else %>
+            <li><%= link_to 'Sign in', new_user_session_path, class: "text-primary" %></li>
+            <li><%= link_to 'Sign up', new_user_registration_path, class: "text-success" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="navbar navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a href="/" class="navbar-brand d-flex align-items-center">
+      <strong>Home</strong>
+    </a>
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
+      data-bs-target="#navbarHeader"
+      aria-controls="navbarHeader"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<%= root_path %>">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%=  %>"></a>
-        </li>
-      </ul>
-    </div>
-    <% if user_signed_in? %>
-      <small class="border rounded border-success p-1 me-3 text-success">
-        <%= current_user.email %>
-      </small>
-      <%= link_to 'Settings', edit_user_registration_path, class: "text-dark text-decoration-none me-2" %>
-      <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-outline-danger" %>
-    <% else %>
-      <%= link_to 'Sign in', new_user_session_path, class: "btn btn-outline-success me-2" %>
-      <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-outline-secondary" %>
-    <% end %>
   </div>
-</nav>
+</div>
