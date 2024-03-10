@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @tutorial %>
+
+<div class="btn-group my-5">
+  <%= link_to "Edit this tutorial", edit_tutorial_path(@tutorial), class: "btn btn-sm btn-outline-dark" %>
+  <%= link_to "Back to tutorials", tutorials_path, class: "btn btn-sm btn-outline-dark" %>
+  <%= button_to "Destroy this tutorial", @tutorial, method: :delete, class: "btn btn-sm btn-outline-dark" %>
+</div>

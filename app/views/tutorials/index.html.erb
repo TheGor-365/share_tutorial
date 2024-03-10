@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1 class="mb-5 text-center">
+  Tutorials
+</h1>
+
+<div id="tutorials">
+  <% @tutorials.each do |tutorial| %>
+    <%= render tutorial %>
+    <p> <%= link_to "Show this tutorial", tutorial, class: "btn btn-sm btn-outline-dark mt-3" %> </p>
+  <% end %>
+</div>
+
+<%= link_to "New tutorial", new_tutorial_path, class: "btn btn-sm btn-outline-dark mt-3" %>

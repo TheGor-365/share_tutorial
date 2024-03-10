@@ -1,0 +1,18 @@
+<div class="border border-primary p-5">
+  <%= simple_form_for(@tutorial) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="form-inputs">
+      <%= f.association :user, label_method: :email, selected: current_user.id, value: current_user.id %>
+      <%= f.input :title %>
+      <%= f.input :description %>
+      <%= f.input :link %>
+      <%#= f.input :image_link %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: 'btn btn-outline-success btn-sm' %>
+    </div>
+  <% end %>
+</div>

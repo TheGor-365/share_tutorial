@@ -1,0 +1,27 @@
+<div id="<%= dom_id tutorial %>" class="border border-primary p-5">
+  <div class="row mb-5">
+    <div class="col-6">
+      <p class="display-3 text-success mb-5">
+        <%= tutorial.title %>
+      </p>
+      <div class="bg-secondary bg-opacity-25 rounded">
+        <p class="mt-5 p-3">
+          <%= tutorial.description %>
+        </p>
+      </div>
+      <small class="text-muted">
+        <%= tutorial.user.email %>
+      </small>
+      <p class="mt-5">
+        <strong class="text-muted my-5 border border-success rounded p-3">
+          <%= link_to "Start #{tutorial.title} tutorial", tutorial.link, target: :_blank %>
+        </strong>
+      </p>
+    </div>
+    <div class="col-6">
+      <p class="my-5 shadow rounded">
+        <%= tutorial.image_link %>
+      </p>
+    </div>
+  </div>
+</div>
