@@ -18,25 +18,13 @@
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
   <% @tutorials.each do |tutorial| %>
     <div class="col">
-      <div class="card shadow-sm">
-        <svg
-          class="bd-placeholder-img card-img-top"
-          width="100%"
-          height="225"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder: Thumbnail"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>
-            <%= tutorial.title %>
-          </title>
-          <rect width="100%" height="100%" fill="#55595c"/>
-          <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-            <%= tutorial.image_link %>
-          </text>
-        </svg>
+      <div class="card shadow-sm mb-4">
+        <div class="card-header">
+          <%= tutorial.title %>
+        </div>
+        <div class="d-flex flex-row justify-content-center w-100">
+          <%= image_tag tutorial.image_link, class: 'bd-placeholder-img card-img-top', style: 'max-height: 300px; max-width: 200' %>
+        </div>
         <div class="card-body">
           <p class="card-text">
             <%= tutorial.description %>
@@ -44,7 +32,9 @@
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <%= link_to 'View', landing_path(tutorial.id), class: 'btn btn-sm btn-outline-secondary' %>
-              <%= link_to 'Edit', '#', class: 'btn btn-sm btn-outline-warning' %>
+              <% if current_user.tutorials.include?(tutorial) %>
+                <%= link_to 'Edit', tutorials_path, class: 'btn btn-sm btn-outline-warning' %>
+              <% end %>
             </div>
             <small class="text-body-secondary">
               <span class="text-muted">Created:</span> <%= time_ago_in_words tutorial.created_at if tutorial %>
@@ -54,4 +44,8 @@
       </div>
     </div>
   <% end %>
+</div>
+
+<div class="digg_pagination d-flex flex-row justify-content-center my-5">
+  <%= will_paginate @tutorials, :container => false %>
 </div>

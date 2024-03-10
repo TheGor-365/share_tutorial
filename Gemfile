@@ -17,6 +17,7 @@ gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 gem "devise", "~> 4.9"
 gem "gastly", "~> 1.1"
+gem "will_paginate", "~> 4.0"
 
 # gem "kredis"
 # gem "bcrypt", "~> 3.1.7"

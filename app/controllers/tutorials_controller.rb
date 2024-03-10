@@ -2,13 +2,15 @@ class TutorialsController < ApplicationController
   before_action :set_tutorial, only: %i[ show edit update destroy ]
 
   def index
-    @tutorials = Tutorial.all
+    @tutorials = Tutorial.paginate(page: params[:page], per_page: 9)
   end
 
   def show
-    name = "#{current_user.email}" + "#{rand(1..1000)}.png"
-    screenshot = Gastly.capture("#{@tutorial.link}", "./app/assets/images/#{name}")
-    @tutorial.update_attribute(:image_link, name)
+    if @tutorial.image_link.nil?
+      name = "#{current_user.email}" + "#{rand(1..1000)}.png"
+      screenshot = Gastly.capture("#{@tutorial.link}", "./app/assets/images/#{name}")
+      @tutorial.update_attribute(:image_link, name)
+    end
   end
 
   def new
